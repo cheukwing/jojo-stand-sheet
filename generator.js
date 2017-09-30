@@ -1,6 +1,7 @@
 var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
-context.font = '20px serif';
+var fontSize = 20;
+context.font = fontSize + "px serif";
 context.fillStyle = 'white';
 var imageObj = new Image();
 var nameBox = document.getElementById('nameInput');
@@ -18,10 +19,12 @@ window.onload = function() {
 
 function updateImage() {
   context.drawImage(imageObj, 69, 50);
+  strokeFillText(namePrefix, 100, 100);
+  strokeFillText(masterPrefix, 200, 200);
   var nameText = namePrefix + nameBox.value;
   var masterText = masterPrefix + masterBox.value;
-  strokeFillText(nameText, 100, 100);
-  strokeFillText(masterText, 200, 200);
+  strokeFillText(nameBox.value, 100, 100 + fontSize);
+  strokeFillText(masterBox.value, 200, 200 + fontSize);
 }
 
 function strokeFillText(text, x, y) {
