@@ -1,6 +1,6 @@
 var canvas = document.getElementById('myCanvas');
 var context = canvas.getContext('2d');
-var fontSize = 30;
+var fontSize = 50;
 context.font = fontSize + "px serif";
 context.fillStyle = 'white';
 var imageObj = new Image();
@@ -18,11 +18,13 @@ window.onload = function() {
 }
 
 function updateImage() {
-  context.drawImage(imageObj, 69, 50);
-  strokeFillText(namePrefix, 100, 100);
-  strokeFillText(masterPrefix, 200, 200);
-  strokeFillText(nameBox.value, 100, 100 + fontSize);
-  strokeFillText(masterBox.value, 200, 200 + fontSize);
+  context.textAlign = "start";
+  context.drawImage(imageObj, 0, 0);
+  strokeFillText(namePrefix, fontSize, fontSize);
+  strokeFillText(nameBox.value, fontSize, fontSize * 2);
+  context.textAlign = "end";
+  strokeFillText(masterPrefix, canvas.width - fontSize, canvas.height - (fontSize * 2));
+  strokeFillText(masterBox.value, canvas.width - fontSize, canvas.height - fontSize);
 }
 
 function strokeFillText(text, x, y) {
