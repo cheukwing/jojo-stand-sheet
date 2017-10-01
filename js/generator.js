@@ -1,16 +1,18 @@
 var canvas = document.getElementById('myCanvas');
 var ctx = canvas.getContext('2d');
-var fontSize = 50;
 var nameInput = document.getElementById('nameInput');
 var masterInput = document.getElementById('masterInput');
+var sizeInput = document.getElementById('sizeInput');
 var imageUpload = document.getElementById('imageUpload');
 
 nameInput.addEventListener('change', redraw, false);
 masterInput.addEventListener('change', redraw, false);
+sizeInput.addEventListener('change', setFontSize, false);
 imageUpload.addEventListener('change', handleImage, false);
 
 var namePrefix = "[STAND NAME]";
 var masterPrefix = "[STAND MASTER]";
+var fontSize = 50;
 
 var img = new Image();
 img.onload = function() {
@@ -22,7 +24,15 @@ img.onload = function() {
 };
 
 window.onload = function() {
-  img.src = 'img/example2.jpeg';
+  img.src = 'img/example.jpeg';
+}
+
+function setFontSize() {
+  var regex = /^[0-9]+$/;
+  if (sizeInput.value.match(regex)) {
+    fontSize = sizeInput.value;
+    redraw();
+  }
 }
 
 function updateName() {
@@ -48,6 +58,7 @@ function handleImage(e) {
 function strokeFillText(context, text, x, y) {
   context.fillStyle = 'white';
   context.font = fontSize + "px serif";
+  context.lineWidth = fontSize / 10 - 1;
   context.strokeText(text, x, y);
   context.fillText(text, x, y);
 }
