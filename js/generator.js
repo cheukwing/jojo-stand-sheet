@@ -1,46 +1,60 @@
 var canvas = document.getElementById('myCanvas');
-var nameBox = document.getElementById('nameInput');
-var masterBox = document.getElementById('masterInput');
-var customImage = document.getElementById('imageUpload');
+var ctx = canvas.getContext('2d');
+var fontSize = 50;
+var nameInput = document.getElementById('nameInput');
+var masterInput = document.getElementById('masterInput');
+var imageUpload = document.getElementById('imageUpload');
+
+nameInput.addEventListener('change', redraw, false);
+masterInput.addEventListener('change', redraw, false);
+imageUpload.addEventListener('change', handleImage, false);
 
 var namePrefix = "[STAND NAME]";
 var masterPrefix = "[STAND MASTER]";
 
-var imageObj = new Image();
-imageObj.onload = function() {
-  canvas.height = imageObj.height;
-  canvas.width = imageObj.width;
-  updateText();
+var img = new Image();
+img.onload = function() {
+  canvas.height = img.height;
+  canvas.width = img.width;
+  ctx.drawImage(img, 0, 0);
+  updateName();
+  updateMaster();
 };
 
-var fontSize = 50;
-
 window.onload = function() {
-  imageObj.src = 'img/example2.jpeg';
+  img.src = 'img/example2.jpeg';
 }
 
-function updateImage() {
-  if (true) {
-    imageObj.src = 'img/example.jpeg';
+function updateName() {
+  ctx.textAlign = 'start';
+  strokeFillText(ctx, namePrefix, fontSize, fontSize * 1.5);
+  strokeFillText(ctx, nameInput.value, fontSize, fontSize * 2.5);
+}
+
+function updateMaster() {
+  ctx.textAlign = 'end';
+  strokeFillText(ctx, masterPrefix, canvas.width - fontSize, canvas.height - (fontSize * 2));
+  strokeFillText(ctx, masterInput.value, canvas.width - fontSize, canvas.height - fontSize);
+}
+
+function handleImage(e) {
+  var reader = new FileReader();
+  reader.onload = function(event) {
+    img.src = event.target.result;
   }
-  updateText();
-}
-
-function updateText() {
-  var context = canvas.getContext('2d');
-  context.font = fontSize + "px serif";
-  context.fillStyle = "white";
-  context.textAlign = "start";
-  context.drawImage(imageObj, 0, 0);
-  // unsure of why fontSize does not result in correct height for stand name
-  strokeFillText(context, namePrefix, fontSize, fontSize * 1.5);
-  strokeFillText(context, nameBox.value, fontSize, fontSize * 2.5);
-  context.textAlign = "end";
-  strokeFillText(context, masterPrefix, canvas.width - fontSize, canvas.height - (fontSize * 2));
-  strokeFillText(context, masterBox.value, canvas.width - fontSize, canvas.height - fontSize);
+  reader.readAsDataURL(e.target.files[0]);
 }
 
 function strokeFillText(context, text, x, y) {
+  context.fillStyle = 'white';
+  context.font = fontSize + "px serif";
   context.strokeText(text, x, y);
   context.fillText(text, x, y);
+}
+
+function redraw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.drawImage(img, 0, 0);
+  updateName();
+  updateMaster();
 }

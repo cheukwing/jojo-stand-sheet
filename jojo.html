@@ -5,7 +5,7 @@
   </head>
   <body>
     <h1>
-      STAND SHEET GENERATOR v0.1
+      STAND SHEET GENERATOR v0.5
     </h1>
     <p> 
       THIS IS A WORK IN PROGRESS! 
@@ -14,20 +14,16 @@
     </p>
     <canvas id="myCanvas"></canvas>
     <form>
-      Stand Name: <input id="nameInput" type="text" name="name" value="THE HAND"/>
+      Stand Name: <input id="nameInput" type="text" name="nameInput" value="THE HAND"/>
       <br />
-      Stand Master: <input id="masterInput" type="text" name="master" value="OKUYASU NIJIMURA"/>
+      Stand Master: <input id="masterInput" type="text" name="masterInput" value="OKUYASU NIJIMURA"/>
       <br />
-      Image: <input type="file" id="fileUpload" accept="image/*" />
-      <br />
-      <a href="javascript: updateImage()">Submit</a>
+      Image: <input type="file" id="imageUpload" name="imageUpload" accept="image/*" />
     </form>  
     <p>
       Todo:
       <ul>
-        <li> Correct text placement. </li>
-        <li> Image upload. </li>
-        <li> Text placement and size based on image size. </li>
+        <li> Text size based on image size. </li>
         <li> Stand parameters. </li>
         <li> Beautify this page. </li>
       </ul>
