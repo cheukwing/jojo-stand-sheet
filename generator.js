@@ -20,8 +20,9 @@ window.onload = function() {
 function updateImage() {
   context.textAlign = "start";
   context.drawImage(imageObj, 0, 0);
-  strokeFillText(namePrefix, fontSize, fontSize);
-  strokeFillText(nameBox.value, fontSize, fontSize * 2);
+  // unsure of why fontSize does not result in correct height for stand name
+  strokeFillText(namePrefix, fontSize, fontSize * 1.5);
+  strokeFillText(nameBox.value, fontSize, fontSize * 2.5);
   context.textAlign = "end";
   strokeFillText(masterPrefix, canvas.width - fontSize, canvas.height - (fontSize * 2));
   strokeFillText(masterBox.value, canvas.width - fontSize, canvas.height - fontSize);
