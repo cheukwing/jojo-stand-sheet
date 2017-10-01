@@ -58,6 +58,8 @@ function handleImage(e) {
 function strokeFillText(context, text, x, y) {
   context.fillStyle = 'white';
   context.font = fontSize + "px serif";
+  context.shadowBlur = 10;
+  context.shadowColor = 'white';
   context.lineWidth = fontSize / 10 - 1;
   context.strokeText(text, x, y);
   context.fillText(text, x, y);
