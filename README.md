@@ -1,6 +1,4 @@
 # jojo-stand-sheet
-WIP
+**Not currently being actively developed.**
 
 Webapp to create stand sheets as seen on JoJo's Bizarre Adventure.
-
-https://cheukwing.github.io/jojo-stand-sheet/
